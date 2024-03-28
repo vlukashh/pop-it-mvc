@@ -5,9 +5,17 @@
 <?php
 if (!app()->auth::check()):
     ?>
-    <form method="post">
-        <label>Логин <input type="text" name="login"></label>
-        <label>Пароль <input type="password" name="password"></label>
-        <button>Войти</button>
-    </form>
+    <div class="form">
+        <form method="post">
+            <div class="cont">
+                <label class="form_int">
+                    <input type="text" name="login" placeholder="Логин">
+                </label>
+                <label class="form_int">
+                    <input type="password" name="password" placeholder="Пароль">
+                </label>
+                <button>Войти</button>
+            </div>
+        </form>
+    </div>
 <?php endif;

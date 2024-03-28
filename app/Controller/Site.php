@@ -53,7 +53,19 @@ class Site
         Auth::logout();
         app()->route->redirect('/hello');
     }
+    public function counting(): string
+    {
+        return new View('site.counting', ['message' => 'hello working']);
+    }
+    public function countingtwo(): string
+    {
+        return new View('site.countingtwo', ['message' => 'hello working']);
+    }
 
+    public function countingthree(): string
+    {
+        return new View('site.countingthree', ['message' => 'hello working']);
+    }
 
 }
 

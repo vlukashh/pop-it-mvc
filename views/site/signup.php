@@ -1,7 +1,16 @@
 <h2>Добавить сотрудника</h2>
 <h3><?= $message ?? ''; ?></h3>
-<form method="post">
-    <label>Логин <input type="text" name="login"></label>
-    <label>Пароль <input type="password" name="password"></label>
-    <button>Добавить</button>
-</form>
+<div class="form">
+    <form method="post">
+        <div class="cont">
+            <label class="form_int">
+                <input type="text" name="login" placeholder="Логин">
+            </label>
+            <label class="form_int">
+                <input type="password" name="password" placeholder="Пароль">
+            </label>
+            <button>Добавить</button>
+        </div>
+    </form>
+</div>
+
