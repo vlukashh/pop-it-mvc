@@ -58,5 +58,21 @@ class Auth
         return true;
     }
 
+    public static function checkadmin(): bool
+    {
+        if (self::$user->getIdRole() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function checksotr(): bool
+    {
+        if (self::$user->getIdRole() == 2) {
+            return true;
+        }
+        return false;
+    }
+
 }
 
