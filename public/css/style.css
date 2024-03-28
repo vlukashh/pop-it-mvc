@@ -67,7 +67,7 @@ h2 {
 .form {
     border-radius: 20px;
     background-color: #eabfe2;
-    height: 460px;
+    height: 300px;
     width: 750px; /* Ширина формы */
     margin: 30px auto; /* Центрирование по горизонтали */
     text-align: center; /* Центрирование содержимого */
@@ -90,7 +90,7 @@ h2 {
     color: #FFFFFF;
 }
 .cont {
-    margin: 100px 0 0 0 ;
+    margin: 10px 0 0 0 ;
 }
 .form input {
     width: 664px;
@@ -132,5 +132,41 @@ h3 {
     text-align: center; /* Центрирование содержимого */
     margin: 20px auto; /* Центрирование по горизонтали */
 }
+.form__room{
+    border-radius: 20px;
+    background-color: #eabfe2;
+    height: 550px;
+    width: 750px; /* Ширина формы */
+    margin: 30px auto; /* Центрирование по горизонтали */
+    text-align: center; /* Центрирование содержимого */
+}
 
+.form__room label {
+    display: block; /* Каждый label на новой строке */
+    margin-bottom: 10px; /* Расстояние между label */
+}
 
+.form__room button {
+    background-color: black;
+    display: block; /* Кнопка на новой строке */
+    text-align: center; /* Центрирование содержимого */
+    margin: 60px auto; /* Центрирование по горизонтали */
+    height:50px ;
+    width: 250px;
+    border-radius: 50px;
+    font-size: 22px;
+    color: #FFFFFF;
+}
+.cont__room {
+    margin: 10px 0 0 0 ;
+}
+.form__room input {
+    width: 664px;
+    height: 52px;
+    border-radius: 10px;
+    margin: 20px 0 0 0;
+}
+.form__cho{
+    margin: 30px auto; /* Центрирование по горизонтали */
+    text-align: center; /* Центрирование содержимого */
+}

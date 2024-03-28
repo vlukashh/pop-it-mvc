@@ -6,6 +6,7 @@ use Model\Post;
 use Src\View;
 use Src\Request;
 use Model\User;
+use Model\Room;
 use Src\Auth\Auth;
 
 class Site
@@ -65,6 +66,17 @@ class Site
     public function countingthree(): string
     {
         return new View('site.countingthree', ['message' => 'hello working']);
+    }
+    public function room(Request $request): string
+    {
+        if ($request->method === 'POST' && Room::create($request->all())) {
+            app()->route->redirect('/room');
+        }
+        return new View('site.room');
+    }
+    public function choice(): string
+    {
+        return new View('site.choice', ['message' => 'hello working']);
     }
 
 }
