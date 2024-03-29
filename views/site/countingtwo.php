@@ -1,9 +1,9 @@
 <h2>Подсчет общего количества посадочных мест по зданию</h2>
 <form class="count__form">
-    <select id="country" name="country"  >
-        <option value="au">Australia</option>
-        <option value="ca">Canada</option>
-        <option value="usa">USA</option>
+    <select id="building" name="building"  >
+        <option value="bu">Здание</option>
+        <option value="bu">Здание</option>
+        <option value="bu">Здание</option>
     </select>
     <button class="count__btn">Выбрать</button>
 </form>

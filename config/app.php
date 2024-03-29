@@ -8,6 +8,14 @@ return [
         'auth' => \Middlewares\AuthMiddleware::class,
         'admin' => \Middlewares\AdminMiddleware::class,
         'sotr' => \Middlewares\SotrMiddleware::class,
+    ],
+    'routeAppMiddleware' => [
+        'csrf' => \Middlewares\CSRFMiddleware::class,
+        'trim' => \Middlewares\TrimMiddleware::class,
+        'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
+    ],
+    'validators' => [
+        'required' => \Validators\RequireValidator::class,
+        'unique' => \Validators\UniqueValidator::class
     ]
-
 ];
