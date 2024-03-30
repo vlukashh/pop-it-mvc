@@ -106,12 +106,25 @@ class Site
     public function rooms(Request $request): string
     {
         $rooms = Rooms::all();
-        $buildings = Buildings::all();
         $room_types = RoomTypes::all();
-        if ($request->method === 'POST' && Rooms::create($request->all())) {
-            app()->route->redirect('/rooms');
+        $buildings = Buildings::all();
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+            if ($request->method === 'POST'){
+                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
+                return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
+            }
+        }else {
+            $rooms = Rooms::all();
+            $buildings = Buildings::all();
+            $room_types = RoomTypes::all();
+            if($request->method === 'POST'&& Rooms::create($request->all())) {
+                app()->route->redirect('/rooms');
+                return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
+            }
+
         }
-        return new View('site.rooms',['rooms' => $rooms, 'buildings' => $buildings, 'room_types' => $room_types]);
+        return new View('site.rooms',['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
     }
     public function choice(Request $request): string
     {

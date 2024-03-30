@@ -31,6 +31,14 @@
         </div>
     </form>
 </div>
+<div>
+    <form action="" method="post">
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+        <input style="width: 250px; padding: 3px" type="search" name="search" id="search-input" placeholder="Поиск помещения по id">
+        <input type="submit" class="btn">
+    </form>
+</div>
 <div class="block">
     <?php
     foreach ($rooms as $room) {
