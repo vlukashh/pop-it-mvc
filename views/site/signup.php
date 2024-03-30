@@ -14,7 +14,7 @@
         </div>
     </form>
 </div>
-<div class="block">
+<div class="pac">
     <?php
     foreach ($users as $user) {
         echo '<div style="    background-color: #eabfe2;

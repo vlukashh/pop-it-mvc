@@ -24,6 +24,9 @@
                     echo '<option value="' . $building->id . '">' . $building->name . '</option>';}
                 ?>
             </select>
+            <label class="label">Фото <input type="file" name="img"></label>
+            <?php if(isset($room) && $room->img !== null): ?>
+            <?php endif; ?>
             <button>Добавить</button>
         </div>
     </form>
@@ -33,12 +36,14 @@
     foreach ($rooms as $room) {
         echo '<div style="    background-color: #eabfe2;
         border-radius: 25px; padding: 10px 30px 10px 30px; width: 200px;
-    height: 115px;margin: 0 0 10px 0">' ;
+    height: 140px;margin: 0 0 10px 0" >' ;
         echo '<p>Название: ' . $room->name . '</p>';
         echo '<p>Вид: ' . $room->id_room_type . '</p>';
         echo '<p>Площадь: ' . $room->square . '</p>';
         echo '<p>Количество: ' . $room->quantity . '</p>';
         echo '<p>Здание: ' . $room->id_building . '</p>';
+        echo '<p >Фото:<img style="width: 30px; height: 30px" src="/public/img/' . $room->img . '" alt=""></p>';
+
         echo '</div>' ;
     }
     ?>

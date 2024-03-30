@@ -150,7 +150,7 @@ h3 {
     background-color: black;
     display: block; /* Кнопка на новой строке */
     text-align: center; /* Центрирование содержимого */
-    margin: 60px auto; /* Центрирование по горизонтали */
+    margin: 10px auto; /* Центрирование по горизонтали */
     height:50px ;
     width: 250px;
     border-radius: 50px;
@@ -170,8 +170,8 @@ h3 {
     margin: 30px auto; /* Центрирование по горизонтали */
     text-align: center; /* Центрирование содержимого */
 }
-/*.block{*/
+.block{
 
-/*    display: flex;*/
-/*    gap: 100px;*/
-/*}*/
+    display: flex;
+    gap: 100px;
+}

@@ -86,8 +86,11 @@ class Site
     public function countingtwo(Request $request): string
     {
         $building = Buildings::all();
-        if ($request->method === 'POST' && Buildings::create($request->all())) {
-            app()->route->redirect('/countingtwo');
+        if (!empty($_GET['chair']))
+        {
+            $id_building = $_GET['chair'];
+            $rooms = Rooms::where('id_building', $id_building)->get();
+            return new View('site.get_seats_build', ['building' => $building, 'rooms' => $rooms]);
         }
         return new View('site.countingtwo',['building' => $building]);
     }

@@ -10,5 +10,13 @@
 </form>
 <div class="qwe">
     <h3>Посадочных мест:</h3>
-    <input class="count__int">
+    <?php
+    $chair = 0;
+    if(!empty($rooms)):
+        foreach ($rooms as $room) {
+            $chair += $room->quantity;
+        }
+        echo '<div class="count_square">' . $chair . ' мест' . '</div>';
+    endif;
+    ?>
 </div>
