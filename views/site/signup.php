@@ -14,4 +14,15 @@
         </div>
     </form>
 </div>
-
+<div class="block">
+    <?php
+    foreach ($users as $user) {
+        echo '<div style="    background-color: #eabfe2;
+        border-radius: 25px; padding: 10px 30px 10px 30px; width: 400px;
+    height: 115px;margin: 0 0 10px 0">' ;
+        echo '<p style="font-size: 16px">Логин:' . $user->login . '</p>';
+        echo '<p style="font-size: 16px">Пароль:' . $user->password . '</p>';
+        echo '</div>' ;
+    }
+    ?>
+</div>

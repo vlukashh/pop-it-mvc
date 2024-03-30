@@ -1,9 +1,10 @@
 <h2>Подсчет общей площади учебных аудиторий по зданию</h2>
 <form class="count__form">
-    <select id="building" name="building"  >
-        <option value="bu">Здание</option>
-        <option value="bu">Здание</option>
-        <option value="bu">Здание</option>
+    <select name="id_building" id="id_building">
+        <?php
+        foreach ($building as $building){
+            echo '<option value="' . $building->id . '">' . $building->name . '</option>';}
+        ?>
     </select>
     <button class="count__btn">Выбрать</button>
 </form>

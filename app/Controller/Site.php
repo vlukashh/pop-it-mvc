@@ -2,11 +2,13 @@
 
 namespace Controller;
 
+use Model\Buildings;
 use Model\Post;
+use Model\RoomTypes;
 use Src\View;
 use Src\Request;
 use Model\User;
-use Model\Room;
+use Model\Rooms;
 use Src\Auth\Auth;
 use Src\Validator\Validator;
 
@@ -31,6 +33,7 @@ class Site
 
     public function signup(Request $request): string
     {
+        $users = User::all();
         if ($request->method === 'POST') {
 
             $validator = new Validator($request->all(), [
@@ -50,7 +53,7 @@ class Site
                 app()->route->redirect('/hello');
             }
         }
-        return new View('site.signup');
+        return new View('site.signup',['users' => $users]);
     }
 
     public function login(Request $request): string
@@ -72,29 +75,48 @@ class Site
         Auth::logout();
         app()->route->redirect('/hello');
     }
-    public function counting(): string
+    public function counting(Request $request): string
     {
-        return new View('site.counting', ['message' => 'hello working']);
+        $building = Buildings::all();
+        if ($request->method === 'POST' && Buildings::create($request->all())) {
+            app()->route->redirect('/counting');
+        }
+        return new View('site.counting',['building' => $building]);
     }
-    public function countingtwo(): string
+    public function countingtwo(Request $request): string
     {
-        return new View('site.countingtwo', ['message' => 'hello working']);
+        $building = Buildings::all();
+        if ($request->method === 'POST' && Buildings::create($request->all())) {
+            app()->route->redirect('/countingtwo');
+        }
+        return new View('site.countingtwo',['building' => $building]);
     }
 
-    public function countingthree(): string
+    public function countingthree(Request $request): string
     {
-        return new View('site.countingthree', ['message' => 'hello working']);
-    }
-    public function room(Request $request): string
-    {
-        if ($request->method === 'POST' && Room::create($request->all())) {
-            app()->route->redirect('/room');
+        $building = Buildings::all();
+        if ($request->method === 'POST' && Buildings::create($request->all())) {
+            app()->route->redirect('/countingthree');
         }
-        return new View('site.room');
+        return new View('site.countingthree',['building' => $building]);
     }
-    public function choice(): string
+    public function rooms(Request $request): string
     {
-        return new View('site.choice', ['message' => 'hello working']);
+        $rooms = Rooms::all();
+        $buildings = Buildings::all();
+        $room_types = RoomTypes::all();
+        if ($request->method === 'POST' && Rooms::create($request->all())) {
+            app()->route->redirect('/rooms');
+        }
+        return new View('site.rooms',['rooms' => $rooms, 'buildings' => $buildings, 'room_types' => $room_types]);
+    }
+    public function choice(Request $request): string
+    {
+        $building = Buildings::all();
+        if ($request->method === 'POST' && Buildings::create($request->all())) {
+            app()->route->redirect('/choice');
+        }
+        return new View('site.choice',['building' => $building]);
     }
 
 }
