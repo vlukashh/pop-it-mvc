@@ -4,6 +4,7 @@ namespace Src;
 
 use Error;
 
+
 class Request
 {
     protected array $body;

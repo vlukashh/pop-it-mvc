@@ -2,13 +2,22 @@
 <form class="count__form">
     <select name="id_building" id="id_building">
         <?php
-        foreach ($building as $building){
+        foreach ($buildings as $building){
             echo '<option value="' . $building->id . '">' . $building->name . '</option>';}
         ?>
     </select>
     <button class="count__btn">Выбрать</button>
 </form>
-<div class="qwe">
-    <h3>Посадочных мест:</h3>
-    <input class="count__int">
+<h3>Площадь:</h3>
+<div class="block">
+    <?php
+    foreach ($rooms as $room) {
+        echo '<div style="    background-color: #eabfe2;
+        border-radius: 25px; padding: 10px 30px 10px 30px; width: 200px;
+    height: 140px;margin: 0 0 10px 0" >' ;
+        echo '<p>Площадь: ' . $room->square . '</p>';
+
+        echo '</div>' ;
+    }
+    ?>
 </div>

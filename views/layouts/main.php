@@ -41,6 +41,7 @@
         ?>
             <a class="content__list" href="<?= app()->route->getUrl('/signup') ?>">Добавить сотрудника</a>
             <a class="content__list" href="<?= app()->route->getUrl('/rooms') ?>">Добавить помещение</a>
+            <a class="content__list" href="<?= app()->route->getUrl('/buildings') ?>">Добавить здание</a>
             <a class="content__list" href="<?= app()->route->getUrl('/choice') ?>">Выбор помещения по зданию</a>
             <a class="content__list" href="<?= app()->route->getUrl('/counting') ?>">Подсчет общей площади учебных аудиторий по зданию</a>
             <a class="content__list" href="<?= app()->route->getUrl('/countingtwo') ?>">Подсчет общего количества посадочных мест по зданию</a>

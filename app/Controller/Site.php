@@ -77,31 +77,78 @@ class Site
     }
     public function counting(Request $request): string
     {
-        $building = Buildings::all();
-        if ($request->method === 'POST' && Buildings::create($request->all())) {
-            app()->route->redirect('/counting');
+        $buildings = Buildings::all();
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+            if ($request->method === 'POST'){
+                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
+                return new View('site.counting', ['buildings' => $buildings, 'rooms' => $rooms]);
+            }
+        }else {
+            $rooms = Rooms::all();
+            $buildings = Buildings::all();
+            if($request->method === 'POST'&& Rooms::create($request->all())) {
+                app()->route->redirect('/rooms');
+                return new View('site.counting', ['buildings' => $buildings, 'rooms' => $rooms]);
+            }
+
         }
-        return new View('site.counting',['building' => $building]);
+        return new View('site.counting',['buildings' => $buildings, 'rooms' => $rooms]);
     }
+//    public function countingtwo(Request $request): string
+//    {
+//        $buildings = Buildings::all();
+//        if (isset($_POST['search'])) {
+//            $search = $_POST['search'];
+//            if ($request->method === 'POST'){
+//                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
+//                return new View('site.countingtwo', ['buildings' => $buildings, 'rooms' => $rooms]);
+//            }
+//        }else {
+//            $rooms = Rooms::all();
+//            $buildings = Buildings::all();
+//            if($request->method === 'POST'&& Rooms::create($request->all())) {
+//                app()->route->redirect('/rooms');
+//                return new View('site.countingtwo', ['buildings' => $buildings, 'rooms' => $rooms]);
+//            }
+//
+//        }
+//        return new View('site.countingtwo',['buildings' => $buildings, 'rooms' => $rooms]);
+//    }
     public function countingtwo(Request $request): string
     {
-        $building = Buildings::all();
-        if (!empty($_GET['chair']))
+        $buildings = Buildings::all();
+
+        if(!empty($_GET['quantity']))
         {
-            $id_building = $_GET['chair'];
-            $rooms = Rooms::where('id_building', $id_building)->get();
-            return new View('site.get_seats_build', ['building' => $building, 'rooms' => $rooms]);
+            $build_id = $_GET['quantity'];
+            $rooms = Rooms::where('id_building', $build_id )->get();
+            return new View('site.countingtwo', ['buildings' => $buildings, 'rooms' => $rooms]);
         }
-        return new View('site.countingtwo',['building' => $building]);
+
+        return new View('site.countingtwo', ['buildings' => $buildings]);
     }
+
 
     public function countingthree(Request $request): string
     {
-        $building = Buildings::all();
-        if ($request->method === 'POST' && Buildings::create($request->all())) {
-            app()->route->redirect('/countingthree');
+        $buildings = Buildings::all();
+        if (isset($_POST['search'])) {
+            $search = $_POST['search'];
+            if ($request->method === 'POST'){
+                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
+                return new View('site.countingthree', ['buildings' => $buildings, 'rooms' => $rooms]);
+            }
+        }else {
+            $rooms = Rooms::all();
+            $buildings = Buildings::all();
+            if($request->method === 'POST'&& Rooms::create($request->all())) {
+                app()->route->redirect('/rooms');
+                return new View('site.countingthree', ['buildings' => $buildings, 'rooms' => $rooms]);
+            }
+
         }
-        return new View('site.countingthree',['building' => $building]);
+        return new View('site.countingthree',['buildings' => $buildings, 'rooms' => $rooms]);
     }
     public function rooms(Request $request): string
     {
@@ -111,17 +158,20 @@ class Site
         if (isset($_POST['search'])) {
             $search = $_POST['search'];
             if ($request->method === 'POST'){
-                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
+                $rooms = Rooms::select('rooms.*')->join('buildings', 'rooms.id_building', '=', 'buildings.id')->where('buildings.name', 'like', "%{$search}%")->get();
                 return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
             }
         }else {
+
             $rooms = Rooms::all();
             $buildings = Buildings::all();
             $room_types = RoomTypes::all();
+
             if($request->method === 'POST'&& Rooms::create($request->all())) {
                 app()->route->redirect('/rooms');
                 return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
             }
+
 
         }
         return new View('site.rooms',['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
@@ -134,6 +184,37 @@ class Site
         }
         return new View('site.choice',['building' => $building]);
     }
+
+    public function buildings(Request $request): string
+    {
+        $buildings = Buildings::all();
+        if ($request->method === 'POST') {
+
+
+            if ($_FILES['img']) {
+                $image = $_FILES['img'];
+                $root = app()->settings->getRootPath();
+                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img/';
+                $name = mt_rand(0, 1000) . $image['name'];
+
+                move_uploaded_file($image['tmp_name'], $path . $name);
+                var_dump(move_uploaded_file($image['tmp_name'], $path . $name));
+
+                $building_data = $request->all();
+                $building_data['img'] = $name;
+
+                if (Buildings::create($building_data)) {
+                    app()->route->redirect('/buildings');
+                }
+            } else {
+                if (Buildings::create($request->all())) {
+                    app()->route->redirect('/buildings');
+                }
+            }
+        }
+        return new View('site.buildings',['buildings' => $buildings]);
+    }
+
 
 }
 

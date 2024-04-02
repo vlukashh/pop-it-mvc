@@ -69,7 +69,7 @@ h2 {
     background-color: #eabfe2;
     height: 300px;
     width: 750px; /* Ширина формы */
-    margin: 30px auto; /* Центрирование по горизонтали */
+    margin: 10px auto; /* Центрирование по горизонтали */
     text-align: center; /* Центрирование содержимого */
 }
 

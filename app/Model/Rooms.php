@@ -16,6 +16,5 @@ class Rooms extends Model
         'square',
         'quantity',
         'id_building',
-        'img'
     ];
 }

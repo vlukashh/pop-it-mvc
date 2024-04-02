@@ -11,8 +11,8 @@ class Buildings extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'id',
         'name',
-
+        'address',
+        'img'
     ];
 }
