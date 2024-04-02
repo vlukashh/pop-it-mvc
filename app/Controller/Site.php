@@ -78,22 +78,15 @@ class Site
     public function counting(Request $request): string
     {
         $buildings = Buildings::all();
-        if (isset($_POST['search'])) {
-            $search = $_POST['search'];
-            if ($request->method === 'POST'){
-                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
-                return new View('site.counting', ['buildings' => $buildings, 'rooms' => $rooms]);
-            }
-        }else {
-            $rooms = Rooms::all();
-            $buildings = Buildings::all();
-            if($request->method === 'POST'&& Rooms::create($request->all())) {
-                app()->route->redirect('/rooms');
-                return new View('site.counting', ['buildings' => $buildings, 'rooms' => $rooms]);
-            }
 
+        if(!empty($_GET['square']))
+        {
+            $id_build = $_GET['square'];
+            $rooms = Rooms::where('id_building', $id_build )->get();
+            return new View('site.counting', ['buildings' => $buildings, 'rooms' => $rooms]);
         }
-        return new View('site.counting',['buildings' => $buildings, 'rooms' => $rooms]);
+
+        return new View('site.counting', ['buildings' => $buildings]);
     }
 //    public function countingtwo(Request $request): string
 //    {
@@ -121,8 +114,8 @@ class Site
 
         if(!empty($_GET['quantity']))
         {
-            $build_id = $_GET['quantity'];
-            $rooms = Rooms::where('id_building', $build_id )->get();
+            $id_build = $_GET['quantity'];
+            $rooms = Rooms::where('id_building', $id_build )->get();
             return new View('site.countingtwo', ['buildings' => $buildings, 'rooms' => $rooms]);
         }
 
@@ -133,22 +126,15 @@ class Site
     public function countingthree(Request $request): string
     {
         $buildings = Buildings::all();
-        if (isset($_POST['search'])) {
-            $search = $_POST['search'];
-            if ($request->method === 'POST'){
-                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
-                return new View('site.countingthree', ['buildings' => $buildings, 'rooms' => $rooms]);
-            }
-        }else {
-            $rooms = Rooms::all();
-            $buildings = Buildings::all();
-            if($request->method === 'POST'&& Rooms::create($request->all())) {
-                app()->route->redirect('/rooms');
-                return new View('site.countingthree', ['buildings' => $buildings, 'rooms' => $rooms]);
-            }
 
+        if(!empty($_GET['square']))
+        {
+            $id_build = $_GET['square'];
+            $rooms = Rooms::where('id_building', $id_build )->get();
+            return new View('site.countingthree', ['buildings' => $buildings, 'rooms' => $rooms]);
         }
-        return new View('site.countingthree',['buildings' => $buildings, 'rooms' => $rooms]);
+
+        return new View('site.countingthree', ['buildings' => $buildings]);
     }
     public function rooms(Request $request): string
     {
@@ -158,7 +144,7 @@ class Site
         if (isset($_POST['search'])) {
             $search = $_POST['search'];
             if ($request->method === 'POST'){
-                $rooms = Rooms::select('rooms.*')->join('buildings', 'rooms.id_building', '=', 'buildings.id')->where('buildings.name', 'like', "%{$search}%")->get();
+                $rooms = Rooms::select('rooms.*')->join('buildings', 'rooms.id_building', '=', 'buildings.id_building')->where('buildings.name', 'like', "%{$search}%")->get();
                 return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
             }
         }else {
@@ -178,11 +164,17 @@ class Site
     }
     public function choice(Request $request): string
     {
-        $building = Buildings::all();
-        if ($request->method === 'POST' && Buildings::create($request->all())) {
-            app()->route->redirect('/choice');
+
+        $buildings = Buildings::all();
+
+        if(!empty($_GET['name']))
+        {
+            $id_build = $_GET['name'];
+            $rooms = Rooms::where('id_building', $id_build )->get();
+            return new View('site.choice', ['buildings' => $buildings, 'rooms' => $rooms]);
         }
-        return new View('site.choice',['building' => $building]);
+
+        return new View('site.choice', ['buildings' => $buildings]);
     }
 
     public function buildings(Request $request): string

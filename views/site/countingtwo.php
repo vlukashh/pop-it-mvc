@@ -3,7 +3,7 @@
     <select name="quantity">
         <?php
         foreach ($buildings as $building){
-            echo '<option value="' . $building->id . '">' . $building->name . '</option>';}
+            echo '<option value="' . $building->id_building . '">' . $building->name . '</option>';}
         ?>
     </select>
     <button class="count__btn">Выбрать</button>
@@ -14,9 +14,9 @@
     $quantity = 0;
     if(!empty($rooms)):
         foreach ($rooms as $room) {
-            $quantity += $room->seats;
+            $quantity += $room->quantity;
         }
-        echo '<div class="count_square">'.$quantity.' посадочных мест'.'</div>';
+        echo '<div class="counts">'.$quantity.' посадочных мест'.'</div>';
     endif
     ?>
 </div>

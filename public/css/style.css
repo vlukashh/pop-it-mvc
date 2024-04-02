@@ -175,3 +175,10 @@ h3 {
     display: flex;
     gap: 100px;
 }
+.counts {
+    margin: 30px auto; /* Центрирование по горизонтали */
+    text-align: center; /* Центрирование содержимого */
+    border: 1px solid black;
+    width: 250px;
+    height: 80px;
+}

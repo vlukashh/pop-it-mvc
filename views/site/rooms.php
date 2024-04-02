@@ -6,10 +6,10 @@
             <label class="form_int">
                 <input type="text" name="name" placeholder="Название">
             </label>
-            <select name="id_room_type" id="id_room_type">
+            <select name="id_room_type">
                 <?php
                 foreach ($room_types as $room_types){
-                    echo '<option value="' . $room_types->id . '">' . $room_types->name . '</option>';}
+                    echo '<option value="' . $room_types->id_room_type . '">' . $room_types->name . '</option>';}
                 ?>
             </select>
             <label class="form_int">
@@ -18,10 +18,10 @@
             <label class="form_int">
                 <input type="text" name="quantity" placeholder="Количество посадочных мест">
             </label>
-            <select name="id_building" id="id_building">
+            <select name="id_building">
                 <?php
                 foreach ($buildings as $building){
-                    echo '<option value="' . $building->id . '">' . $building->name . '</option>';}
+                    echo '<option value="' . $building->id_building . '">' . $building->name . '</option>';}
                 ?>
             </select>
             <button>Добавить</button>
@@ -45,7 +45,7 @@
 //        echo '<p>Вид: ' . $room->id_room_type . '</p>';
         $room_types_name ='';
         foreach ($room_types as $room_type){
-            if ($room_types->id == $room->id_room_type){
+            if ($room_types->id_room_type == $room->id_room_type){
                 $room_types_name = $room_types->name;
                 break;
             }
@@ -56,7 +56,7 @@
 //        echo '<p>Здание: ' . $room->id_building . '</p>';
         $building_name = '';
             foreach ($buildings as $building) {
-                if ($building->id == $room->id_building) {
+                if ($building->id_building == $room->id_building) {
                     $room->building_name = $building->name;
                     break; // Once we find the building, we can break the loop
                 }
