@@ -88,6 +88,19 @@ class Site
 
         return new View('site.counting', ['buildings' => $buildings]);
     }
+    public function counting_type(Request $request): string
+    {
+
+        $room_types = RoomTypes::all();
+        if(!empty($_GET['square_type']))
+        {
+            $id_types = $_GET['square_type'];
+
+            $rooms = Rooms::where('id_room_type', $id_types )->get();
+            return new View('site.counting_type', ['room_types' => $room_types, 'rooms' => $rooms]);
+        }
+        return new View('site.counting_type', ['room_types' => $room_types]);
+    }
     public function countingtwo(Request $request): string
     {
         $buildings = Buildings::all();
@@ -100,6 +113,20 @@ class Site
         }
 
         return new View('site.countingtwo', ['buildings' => $buildings]);
+    }
+
+    public function countingtwo_type(Request $request): string
+    {
+        $room_types = RoomTypes::all();
+
+        if(!empty($_GET['quantity_type']))
+        {
+            $id_types = $_GET['quantity_type'];
+            $rooms = Rooms::where('id_room_type', $id_types )->get();
+            return new View('site.countingtwo_type', ['room_types' => $room_types, 'rooms' => $rooms]);
+        }
+        return new View('site.countingtwo_type', ['room_types' => $room_types]);
+
     }
 
 

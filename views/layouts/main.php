@@ -44,7 +44,9 @@
             <a class="content__list" href="<?= app()->route->getUrl('/buildings') ?>">Добавить здание</a>
             <a class="content__list" href="<?= app()->route->getUrl('/choice') ?>">Выбор помещения по зданию</a>
             <a class="content__list" href="<?= app()->route->getUrl('/counting') ?>">Подсчет общей площади учебных аудиторий по зданию</a>
+            <a class="content__list" href="<?= app()->route->getUrl('/counting_type') ?>">Подсчет общей площади учебных аудиторий по типу помещения</a>
             <a class="content__list" href="<?= app()->route->getUrl('/countingtwo') ?>">Подсчет общего количества посадочных мест по зданию</a>
+            <a class="content__list" href="<?= app()->route->getUrl('/countingtwo_type') ?>">Подсчет общего количества посадочных мест по типу помещения</a>
             <a class="content__list" href="<?= app()->route->getUrl('/countingthree') ?>">Подсчет общей площади учебных аудиторий по учебному заведению </a>
             <?= $content ?? '' ?>
         <?php

@@ -13,3 +13,5 @@ Route::add('GET', '/countingthree', [Controller\Site::class, 'countingthree']);;
 Route::add(['GET', 'POST'], '/rooms', [Controller\Site::class, 'rooms']) ->middleware('sotr');
 Route::add('GET', '/choice', [Controller\Site::class, 'choice'])->middleware('sotr');;
 Route::add(['GET', 'POST'], '/buildings', [Controller\Site::class, 'buildings']) ->middleware('sotr');
+Route::add('GET', '/counting_type', [Controller\Site::class, 'counting_type']);;
+Route::add('GET', '/countingtwo_type', [Controller\Site::class, 'countingtwo_type']);;
