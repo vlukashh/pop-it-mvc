@@ -16,7 +16,7 @@
         foreach ($rooms as $room) {
             $quantity += $room->quantity;
         }
-        echo '<div class="counts">'.$quantity.' посадочных мест'.'</div>';
+        echo '<div class="counts" style="border: 2px solid black; height: 25px; font-weight: bold ">'.$quantity.' посадочных мест'.'</div>';
     endif
     ?>
 </div>

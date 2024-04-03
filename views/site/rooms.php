@@ -1,4 +1,5 @@
 <h2>Добавить помещение</h2>
+<h3><?= $message ?? ''; ?></h3>
 <div class="form__room">
     <form method="post">
         <div class="cont__room">

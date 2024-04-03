@@ -10,7 +10,7 @@
 </form>
 <h3>Название помещений:</h3>
 <div class="form__cho">
-    <ul>
+    <ul class="dash-list">
         <?php
         if(!empty($rooms)):
             foreach ($rooms as $room) {

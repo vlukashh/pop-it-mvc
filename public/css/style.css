@@ -178,7 +178,17 @@ h3 {
 .counts {
     margin: 30px auto; /* Центрирование по горизонтали */
     text-align: center; /* Центрирование содержимого */
-    border: 1px solid black;
+    border: 2px solid black;
     width: 250px;
     height: 80px;
+}
+ul.dash-list {
+    list-style: none; /* Отказываемся от стандартных маркеров */
+}
+ul.dash-list li::before {
+    content: "– "; /* Вот и наше тире! */
+    padding-right: 5px; /* А здесь обеспечим утонченный отступ для тире */
+}
+.form__build {
+
 }

@@ -16,6 +16,7 @@ return [
     ],
     'validators' => [
         'required' => \Validators\RequireValidator::class,
-        'unique' => \Validators\UniqueValidator::class
+        'unique' => \Validators\UniqueValidator::class,
+        'specialSymbols' => \Validators\SpecSymbolsValidator::class,
     ]
 ];

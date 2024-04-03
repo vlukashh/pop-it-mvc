@@ -88,26 +88,6 @@ class Site
 
         return new View('site.counting', ['buildings' => $buildings]);
     }
-//    public function countingtwo(Request $request): string
-//    {
-//        $buildings = Buildings::all();
-//        if (isset($_POST['search'])) {
-//            $search = $_POST['search'];
-//            if ($request->method === 'POST'){
-//                $rooms = Rooms::where('id_building', 'like', "%{$search}%")->get();
-//                return new View('site.countingtwo', ['buildings' => $buildings, 'rooms' => $rooms]);
-//            }
-//        }else {
-//            $rooms = Rooms::all();
-//            $buildings = Buildings::all();
-//            if($request->method === 'POST'&& Rooms::create($request->all())) {
-//                app()->route->redirect('/rooms');
-//                return new View('site.countingtwo', ['buildings' => $buildings, 'rooms' => $rooms]);
-//            }
-//
-//        }
-//        return new View('site.countingtwo',['buildings' => $buildings, 'rooms' => $rooms]);
-//    }
     public function countingtwo(Request $request): string
     {
         $buildings = Buildings::all();
@@ -141,27 +121,43 @@ class Site
         $rooms = Rooms::all();
         $room_types = RoomTypes::all();
         $buildings = Buildings::all();
+
         if (isset($_POST['search'])) {
             $search = $_POST['search'];
-            if ($request->method === 'POST'){
+            if ($request->method === 'POST') {
                 $rooms = Rooms::select('rooms.*')->join('buildings', 'rooms.id_building', '=', 'buildings.id_building')->where('buildings.name', 'like', "%{$search}%")->get();
                 return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
             }
-        }else {
+        } else {
 
             $rooms = Rooms::all();
             $buildings = Buildings::all();
             $room_types = RoomTypes::all();
 
-            if($request->method === 'POST'&& Rooms::create($request->all())) {
-                app()->route->redirect('/rooms');
-                return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
+            if ($request->method === 'POST') {
+
+                $validator = new Validator($request->all(), [
+                    'name' => ['required', 'specialSymbols'],
+                    'square' => ['required', 'specialSymbols'],
+                    'quantity' => ['required', 'specialSymbols'],
+                ], [
+                    'required' => 'Поле :field пусто',
+                    'specialSymbols' => 'Поле :field не должно содержать спец символы',
+                ]);
+
+                if ($validator->fails()) {
+                    return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types, 'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                }
+
+                if (Rooms::create($request->all())) {
+                    app()->route->redirect('/rooms');
+                    return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
+                }
             }
-
-
         }
-        return new View('site.rooms',['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
+        return new View('site.rooms', ['buildings' => $buildings, 'rooms' => $rooms, 'room_types' => $room_types]);
     }
+
     public function choice(Request $request): string
     {
 
@@ -182,6 +178,17 @@ class Site
         $buildings = Buildings::all();
         if ($request->method === 'POST') {
 
+            $validators = new Validator($request->all(), [
+                'name' => ['required', 'specialSymbols'],
+                'address' => ['required', 'specialSymbols']
+            ],  [
+                'required' => 'Поле не заполнено',
+                'specialSymbols' => 'Поле не должно содержать спец. символы'], );
+
+            if($validators->fails()){
+                return new View('site.buildings',
+                    ['buildings'=>$buildings, 'message' => json_encode($validators->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
 
             if ($_FILES['img']) {
                 $image = $_FILES['img'];

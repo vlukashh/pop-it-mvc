@@ -16,7 +16,7 @@
         foreach ($rooms as $room) {
             $squares += $room->square;
         }
-        echo '<div class="counts">'.$squares.' м^2'.'</div>';
+        echo '<div class="counts " style="border: 2px solid black; height: 25px; font-weight: bold ">'.$squares.' м^2'.'</div>';
     endif
     ?>
 </div>
