@@ -23,7 +23,7 @@
     height: 140px;margin: 0 0 10px 0" >' ;
         echo '<p>Название: ' . $building->name . '</p>';
         echo '<p>Адрес: ' . $building->address . '</p>';
-        echo '<p style="font-size: 24px"><img style="width: 50px; height: 50px" src="/public/img/' . $building->img . '" alt=""></p>';
+        echo '<p style="font-size: 24px"><img style="width: 50px; height: 50px" src="/test/public/img/' . $building->img . '" alt=""></p>';
 
         echo '</div>' ;
     }

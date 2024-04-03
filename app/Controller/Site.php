@@ -193,7 +193,7 @@ class Site
             if ($_FILES['img']) {
                 $image = $_FILES['img'];
                 $root = app()->settings->getRootPath();
-                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img/';
+                $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/test/public/img/';
                 $name = mt_rand(0, 1000) . $image['name'];
 
                 move_uploaded_file($image['tmp_name'], $path . $name);
