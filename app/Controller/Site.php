@@ -217,26 +217,27 @@ class Site
                     ['buildings'=>$buildings, 'message' => json_encode($validators->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
-            if ($_FILES['img']) {
+            $building = $request->all();
+            if (!empty($_FILES['img'])) {
                 $image = $_FILES['img'];
                 $root = app()->settings->getRootPath();
                 $path = $_SERVER['DOCUMENT_ROOT'] . $root . '/public/img/';
-                $name = mt_rand(0, 1000) . $image['name'];
+                $name = $image['name'];
 
                 move_uploaded_file($image['tmp_name'], $path . $name);
-                var_dump(move_uploaded_file($image['tmp_name'], $path . $name));
+//                var_dump(move_uploaded_file($image['tmp_name'], $path . $name));
 
-                $building_data = $request->all();
-                $building_data['img'] = $name;
+                $building['img'] = $name;
 
-                if (Buildings::create($building_data)) {
-                    app()->route->redirect('/buildings');
-                }
-            } else {
-                if (Buildings::create($request->all())) {
+                if (Buildings::create($building)) {
                     app()->route->redirect('/buildings');
                 }
             }
+//            else {
+//                if (Buildings::create($request->all())) {
+//                    app()->route->redirect('/buildings');
+//                }
+//            }
         }
         return new View('site.buildings',['buildings' => $buildings]);
     }
