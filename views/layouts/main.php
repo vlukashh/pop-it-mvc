@@ -38,9 +38,8 @@
             <?= $content ?? '' ?>
         <?php
         else:
-            if (!app()->auth::checksotr()):
+            if (app()->auth::checksotr()):
                 ?>
-                <a class="content__list" href="<?= app()->route->getUrl('/signup') ?>">Добавить сотрудника</a>
                 <a class="content__list" href="<?= app()->route->getUrl('/rooms') ?>">Добавить помещение</a>
                 <a class="content__list" href="<?= app()->route->getUrl('/buildings') ?>">Добавить здание</a>
                 <a class="content__list" href="<?= app()->route->getUrl('/choice') ?>">Выбор помещения по зданию</a>
@@ -52,7 +51,7 @@
                 <?= $content ?? '' ?>
             <?php
             else:
-                if (!app()->auth::checkadmin()):
+                if (app()->auth::checkadmin()):
                     ?>
                     <a class="content__list" href="<?= app()->route->getUrl('/signup') ?>">Добавить сотрудника</a>
                     <a class="content__list" href="<?= app()->route->getUrl('/counting') ?>">Подсчет общей площади учебных аудиторий по зданию</a>
@@ -64,10 +63,11 @@
                 <?php
                 endif;
             endif;
-        endif; // Здесь добавлено завершение блока else
+        endif;
         ?>
     </div>
 </main>
+
 
 
 </body>
